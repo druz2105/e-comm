@@ -1,0 +1,109 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+    *{
+    margin:0;
+    padding:0;
+}
+
+.form.css{
+    height:100%;
+    width:100%;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    padding:10px;
+
+}
+
+.form-box{
+    width:680px;
+    height:480px;
+    position:relative;
+    margin:5% auto;
+    background-image: linear-gradient(to bottom left, orange, white);
+    padding:20px;
+    padding-top:30px;
+    box-shadow: 15px 10px grey;
+}
+</style>
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Login/Register</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="">Login/Register</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Login Box Area =================-->
+{% if email %}
+<script>
+        alert("Email Is in use")
+
+</script>
+{% else %}
+{% endif %}
+<div class="container">
+    {% if reg %}
+    <h1><a href="/login/">You Can Login As user Now</a></h1>
+    {% else %}
+    <form enctype="multipart/form-data" method="POST" class="needs-validation">
+        {% csrf_token %}
+        <div class="form-css">
+            <div class="form-box">
+                <div class="form-group">
+                    <input type="text" name="first_name" placeholder="First Name" class="form-control"
+                           required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="last_name" placeholder="Last Name" class="form-control"
+                           required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="email_id" placeholder="Email" class="form-control"
+                           pattern="[a-z0-9._%+-]+@gmail.com"
+                           oninvalid="this.setCustomValidity('Enter Valid email id(only gmail id is valid)')"
+                           oninput="this.setCustomValidity('')" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password_1" placeholder="Password" class="form-control"
+                           id="password" onkeyup='check();' required>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password_2" placeholder="Confirm Your Password"
+                           class="form-control" id="confirm_password" onkeyup='check();' required>
+                    <span id='message'></span>
+                </div>
+                <div class="col-lg-6 login-btm login-button">
+                    <input type="submit" class="btn btn-primary" value="Submit" id="submit">
+                </div>
+            </div>
+        </div>
+    </form>
+    {% endif %}
+</div>
+<script>
+    var check = function() {
+      if (document.getElementById('password').value ==
+        document.getElementById('confirm_password').value)
+       {
+       document.getElementById('submit').disabled = false;
+      }
+      else
+      {
+        document.getElementById('submit').disabled = true;
+      }
+    }
+</script>
+<!--================End Login Box Area =================-->
+{% endblock %}
