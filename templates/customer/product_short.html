@@ -1,0 +1,144 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static %}
+<section class="features-area section_gap">
+    <div class="container">
+        <div class="row features-inner">
+            <!-- single features -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-features">
+                    <div class="f-icon">
+                        <img src="{% static 'img/features/f-icon1.png'%}" alt="">
+                    </div>
+                    <h6>Free Delivery</h6>
+                    <p>Free Shipping on all order</p>
+                </div>
+            </div>
+            <!-- single features -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-features">
+                    <div class="f-icon">
+                        <img src="{% static 'img/features/f-icon2.png'%}" alt="">
+                    </div>
+                    <h6>Return Policy</h6>
+                    <p>Free Shipping on all order</p>
+                </div>
+            </div>
+            <!-- single features -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-features">
+                    <div class="f-icon">
+                        <img src="{% static 'img/features/f-icon3.png'%}" alt="">
+                    </div>
+                    <h6>24/7 Support</h6>
+                    <p>Free Shipping on all order</p>
+                </div>
+            </div>
+            <!-- single features -->
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-features">
+                    <div class="f-icon">
+                        <img src="{% static 'img/features/f-icon4.png' %}" alt="">
+                    </div>
+                    <h6>Secure Payment</h6>
+                    <p>Free Shipping on all order</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="owl-carousel active-product-area section_gap">
+    <div class="single-product-slider">
+        <div class="container" id="row_data">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div class="section-title">
+                        <h1>Latest Products</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for i in product %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <img class="img-fluid" src="{{ i.image0.url }}" alt="">
+                        <div class="product-details">
+                            <h6>{{ i.product_name }}</h6>
+                            <div class="price">
+                                {% if i.discount %}
+                                <h5>{{ i.deal_price }}</h5>
+                                <h6 class="l-through">{{i.product_price}}</h6>
+                                {% else %}
+                                <h5>{{i.product_price}}</h5>
+                                {% endif %}
+                            </div>
+                            <div class="prd-bottom">
+
+                                <a href="{% url 'details_product' pk=i.id%}" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">add to bag</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">wishlist</p>
+                                </a>
+                                <a href="{% url 'details_product' pk=i.id%}" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="single-product-slider">
+        <div class="container" id="row_data">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div class="section-title">
+                        <h1>Latest Products</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for i in product %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <img class="img-fluid" src="{{ i.image0.url }}" alt="">
+                        <div class="product-details">
+                            <h6>{{ i.product_name }}</h6>
+                            <div class="price">
+                                {% if i.discount %}
+                                <h5>{{ i.deal_price }}</h5>
+                                <h6 class="l-through">{{i.product_price}}</h6>
+                                {% else %}
+                                <h5>{{i.product_price}}</h5>
+                                {% endif %}
+                            </div>
+                            <div class="prd-bottom">
+
+                                <a href="{% url 'details_product' pk=i.id%}" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">add to bag</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">wishlist</p>
+                                </a>
+                                <a href="{% url 'details_product' pk=i.id%}" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'seller_main.html' %}
+{% block content %}
+{% load static %}
+
+<!-- Start Banner Area -->
+<style>
+    *{
+    margin:0;
+    padding:0;
+}
+#form-data{
+    background-image: linear-gradient(to bottom right,darkorange 40%,white ,orange 40%);
+
+}
+
+.form-box{
+    width:280px;
+    height:1080px;
+    position:relative;
+    margin:5% auto;
+    padding:20px;
+    padding-top:30px;
+}
+.id_font{
+    color:white;
+    font-family:verdana;
+    font-size:120%;
+
+    }
+
+
+
+
+
+
+
+
+
+</style>
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Edit Profile</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/home/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="/edit_user_profile/">Edit Profile</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<section class="login_box_area section_gap">
+    <div class="container" id="form-data">
+        <form enctype="multipart/form-data" method="POST" class="needs-validation">
+            {% csrf_token %}
+            <div class="form-box">
+                <div class="row">
+                    {{form.as_p}}
+                    <div class="col-lg-6 login-btm login-button">
+                        <input type="submit" class="btn btn-primary" value="Submit" id="submit">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<!--================Contact Area =================-->
+<section class="contact_area section_gap_bottom">
+    <div class="container">
+    </div>
+</section>
+<!--================Contact Area =================-->
+{% endblock %}

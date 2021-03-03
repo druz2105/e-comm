@@ -1,10 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'seller_main.html' %}
+{% block content %}
+{% load static %}
+
+<!-- Start Banner Area -->
+<style>
+    *{
+    margin:0;
+    padding:0;
+}
+.add_product{
+    background-image: linear-gradient(to bottom right,darkorange 40%,white ,orange 40%);
+    background-size: auto|length|cover|contain|initial|inherit;
+}
+
+.form-box{
+    width:480px;
+    height:980px;
+    position:relative;
+    margin:5% auto;
+    padding:20px;
+    padding-top:30px;
+}
+.id_font{
+    color:white;
+    font-family:verdana;
+    font-size:120%;
+    }
+</style>
+
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Add Shoes</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/seller_home/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="#">Shoes Add</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<section class="add_product">
+    <div class="container" id="form-data">
+        <form enctype="multipart/form-data" method="POST" class="needs-validation">
+            {% csrf_token %}
+            <div class="form-box">
+                <div class="row">
+                    <div class="col-md-12 form-group p_star">
+                        <label class="id_font" id="id_image0">Image Of Product</label>
+                        {{ form.image0 }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        <label class="id_font" id="id_image1">Image Of Product</label>
+                        {{form.image1}}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        <label class="id_font" id="id_image2">Image Of Product</label>
+                        {{form.image2}}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form.product_name }}
+                    </div>
+                    <div class=" col-md-12 form-group p_star">
+                        {{ form.product_price }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form.product_color }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form.product_details }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form.product_discount }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        <label class="id_font">Gender</label>
+                        <p>
+                        </p>
+                        {{ form1.product_gender }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        <label class="id_font">Brand</label>
+                        <p>
+                        </p>
+                        {{ form1.shoe_brand }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        <label class="id_font">Type Of Shoes</label>
+                        <p></p>
+                        {{ form1.shoe_type }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form1.size }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form1.count }}
+                    </div>
+                    <div class="col-lg-6 login-btm login-button">
+                        <input type="submit" class="btn btn-primary" value="Submit" id="submit">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<!--================Contact Area =================-->
+<section class="contact_area section_gap_bottom">
+    <div class="container">
+    </div>
+</section>
+<!--================Contact Area =================-->
+{% endblock %}

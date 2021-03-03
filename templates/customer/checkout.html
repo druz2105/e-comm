@@ -1,0 +1,186 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Checkout</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="">Checkout</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Checkout Area =================-->
+<section class="checkout_area section_gap">
+    <div class="container">
+        <div class="cupon_area">
+            <input type="text" placeholder="Enter coupon code">
+            <a class="tp_btn" href="#">Apply Coupon</a>
+        </div>
+        <form class="row contact_form" method="POST" novalidate="novalidate">
+            {% csrf_token %}
+            <div class="hideable">
+                <div class="billing_details">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h3>Shipping Address</h3>
+                            <div class="col-md-12 form-group p_star">
+                                <select name="shipping_country" id="id_country" class="form-control"
+                                        style="display: none;">
+                                    <option value="I">INDIA</option>
+
+                                    <option value="P">PAKISTAN</option>
+
+                                    <option value="B">Bangladesh</option>
+
+                                </select>
+                                <div class="nice-select form-control" tabindex="0"><span class="current">INDIA</span>
+                                    <ul class="list">
+                                        <li data-value="I" class="option">INDIA</li>
+                                        <li data-value="P" class="option">PAKISTAN</li>
+                                        <li data-value="B" class="option">Bangladesh</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" name="shipping_apartment_address" class="form-control" id="add1"
+                                       placeholder="Apartment Number">
+                            </div>
+                            <div class=" col-md-12 form-group p_star">
+                                <input type="text" name="shipping_street_address" class="form-control" id="add2"
+                                       placeholder="City/Village/Area">
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" name="shipping_state" class="form-control" id="city"
+                                       placeholder="state">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="text" name="shipping_zip" class="form-control" id="zip"
+                                       placeholder="Postcode/ZIP">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>Billing Address</h3>
+                        <div class="col-md-12 form-group p_star">
+                            {{form.country}}
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            {{ form.apartment_address }}
+                        </div>
+                        <div class=" col-md-12 form-group p_star">
+                            {{ form.street_address }}
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            {{ form.state }}
+                        </div>
+                        <div class="col-md-12 form-group">
+                            {{ form.zip }}
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <h3>Shipping Details</h3>
+                            {{ form.same_shipping }}
+                            <label for="id_same_billing">Ship to a Same Address</label>
+                        </div>
+                        {% if default_address%}
+                        <div class="col-md-12 form-group">
+                            {{ form.use_default_billing }}
+                            <label for="id_same_billing">Use Default Address:{{default_address.apartment_address|truncatechars:10 }}</label>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="order_box">
+                            <h2>Your Order</h2>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for order_item in order.items.all %}
+                                <tr>
+                                    <td>
+                                        {{order_item.item.product_name}}
+                                    </td>
+                                    <td>
+                                        {{order_item.product_quantity}}
+                                    </td>
+                                    <td>
+                                        {% if order_item.item.discount %}
+                                        <h5>RS.{{order_item.get_total_disc_price}}</h5>
+                                        {% else %}
+                                        <h5>RS.{{order_item.get_total_item_price}}</h5>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td>
+                                        Total Price
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                    <td>
+                                        {% if order.get_total %}
+                                        RS.{{order.get_total}}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Payment Options</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for val,name in form.fields.payment_option.choices %}
+                                <tr>
+                                    <td>
+                                        <div class="payment_item">
+                                            <div class="radion_btn">
+                                                <input type="radio" value="{{val}}" id="{{val}}"
+                                                       name="payment_option">
+                                                <label for="{{val}}">{{name}}</label>
+                                                <div class="check"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td>
+                                        <button class="primary-btn">Proceed to Payment</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<!--================End Checkout Area =================-->
+{% endblock %}

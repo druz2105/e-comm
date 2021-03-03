@@ -1,0 +1,96 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static %}
+
+<!-- Start Banner Area -->
+<style>
+    *{
+    margin:0;
+    padding:0;
+}
+#form-data{
+    background-image: linear-gradient(to bottom right,darkorange 40%,white ,orange 40%);
+
+}
+
+.form.css{
+    height:100%;
+    width:100%;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    padding:10px;
+
+}
+
+.form-box{
+    width:380px;
+    height:680px;
+    position:relative;
+    margin:5% auto;
+    padding:20px;
+    padding-top:30px;
+}
+
+
+
+
+
+
+</style>
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Edit Profile</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/home/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="/edit_user_profile/">Edit Profile</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<section class="login_box_area section_gap">
+    <div class="container" id="form-data">
+        <form enctype="multipart/form-data" method="POST" class="needs-validation">
+            {% csrf_token %}
+            <div class="form-css">
+                <div class="form-box">
+                    <div class="col-md-12 form-group p_star">
+                        {{ form.mobile_no }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{form.alternate_mobile_number}}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{form.country}}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form.apartment_address }}
+                    </div>
+                    <div class=" col-md-12 form-group p_star">
+                        {{ form.street_address }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form.state }}
+                    </div>
+                    <div class="col-md-12 form-group">
+                        {{ form.zip }}
+                    </div>
+                    <div class="col-lg-6 login-btm login-button">
+                        <input type="submit" class="btn btn-primary" value="Submit" id="submit">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<!--================Contact Area =================-->
+<section class="contact_area section_gap_bottom">
+    <div class="container">
+    </div>
+</section>
+<!--================Contact Area =================-->
+{% endblock %}

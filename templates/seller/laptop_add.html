@@ -1,0 +1,186 @@
+{% extends 'seller_main.html' %}
+{% block content %}
+{% load static %}
+
+<!-- Start Banner Area -->
+<style>
+    *{
+    margin:0;
+    padding:0;
+}
+#form-data{
+    background-image: linear-gradient(to bottom right,darkorange 40%,white ,orange 40%);
+
+}
+
+.form-box{
+    width:580px;
+    height:2280px;
+    position:relative;
+    margin:5% auto;
+    padding:20px;
+    padding-top:30px;
+}
+.id_font{
+    color:white;
+    font-family:verdana;
+    font-size:120%;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Edit Profile</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/home/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="/edit_user_profile/">Edit Profile</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+{{f.as_p}}
+<!-- End Banner Area -->
+<section class="login_box_area section_gap">
+    <div class="container" id="form-data">
+        <form enctype="multipart/form-data" method="POST" class="needs-validation">
+            {% csrf_token %}
+            <div class="form-box">
+                <div class="row">
+                    <div class="col-md-12 form-group p_star">
+                        <label class="id_font" id="id_image0">Image Of Product</label>
+                        {{ form.image0 }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        <label class="id_font" id="id_image1">Image Of Product</label>
+                        {{form.image1}}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        <label class="id_font" id="id_image2">Image Of Product</label>
+                        {{form.image2}}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form.product_name }}
+                    </div>
+                    <div class=" col-md-12 form-group p_star">
+                        {{ form.product_price }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form.product_color }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form.product_details }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form.product_discount }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.model_year }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.model_name }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.laptop_brand }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.screen_size }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.screen_type }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.resolution }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.weight }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.processor_brand }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.processor_speed }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.processor_type }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.operating_system }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.graphics_card_details }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.graphics_card_ram_type }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.graphics_card_interface }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.graphics_coprocessor }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.ram }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.storage_type }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.storage_size }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.max_memory_supported }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.usb_ports }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.optical_drive_type }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.hardware_interface }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.battery_details }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.connector_type }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.power_source }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.count }}
+                    </div>
+                    <div class="col-md-12 form-group p_star">
+                        {{ form_l.manufacturer }}
+                    </div>
+                    <div class="col-lg-6 login-btm login-button">
+                        <input type="submit" class="btn btn-primary" value="Submit" id="submit">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<!--================Contact Area =================-->
+<section class="contact_area section_gap_bottom">
+    <div class="container">
+    </div>
+</section>
+<!--================Contact Area =================-->
+{% endblock %}

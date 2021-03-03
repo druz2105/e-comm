@@ -1,0 +1,221 @@
+{% extends 'main.html' %}
+{% block content %}
+{% load static %}
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Confirmation</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/home/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="#">Confirmation</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Order Details Area =================-->
+<section class="order_details section_gap">
+    <div class="container">
+        <h3 class="title_confirmation">Thank you. Your order has been received.</h3>
+        <div class="row order_d_inner">
+            <div class="col-lg-4">
+                <div class="details_item">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" colspan="3"></th>
+                            <th scope="col">Order Info</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for oi in order %}
+                        <tr>
+                            <td colspan="3">
+                                Order_id
+                            </td>
+                            <td>
+                                {{ oi.order_id }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                Amount
+                            </td>
+                            <td>
+                                {{ oi.get_total }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3">
+                                Payment Method
+                            </td>
+                            <td>
+                                {{ oi.payment.payment_method }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3">
+                                Date
+                            </td>
+                            <td>
+                                {{ oi.order_date }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="details_item">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" colspan="3"></th>
+                            <th scope="col">Billing Address</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for oi in order %}
+                        <tr>
+                            <td colspan="3">
+                                Apartment/Street
+                            </td>
+                            <td>
+                                {{ oi.billing_address.apartment_address }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                State
+                            </td>
+                            <td>
+                                {{ oi.billing_address.state }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                Country
+                            </td>
+                            <td>
+                                {{ oi.billing_address.get_country_display }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                PostCode
+                            </td>
+                            <td>
+                                {{ oi.billing_address.zip }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="details_item">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col" colspan="3"></th>
+                            <th scope="col">Shipping Address</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for oi in order %}
+                        <tr>
+                            <td colspan="3">
+                                Apartment/Street
+                            </td>
+                            <td>
+                                {{ oi.shipping_address.apartment_address }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                State
+                            </td>
+                            <td>
+                                {{ oi.shipping_address.state }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                Country
+                            </td>
+                            <td>
+                                {{ oi.shipping_address.get_country_display }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                PostCode
+                            </td>
+                            <td>
+                                {{ oi.shipping_address.zip }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="order_details_table">
+            <h2>Order Details</h2>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order_item in object.items.all %}
+                    <tr>
+                        <td>
+                            <p>{{order_item.item.product_name}}</p>
+                        </td>
+                        <td>
+                            <h5>{{order_item.product_quantity}}</h5>
+                        </td>
+                        <td>
+                            {% if order_item.item.discount %}
+                            <h5>RS.{{order_item.get_total_disc_price}}</h5>
+                            {% else %}
+                            <h5>RS.{{order_item.get_total_item_price}}</h5>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <h4>Total</h4>
+                        </td>
+                        <td>
+                            <h5></h5>
+                        </td>
+                        <td>
+                            <p>
+                                RS.{{object.get_total}}
+                            </p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Order Details Area =================-->
+{% endblock %}
